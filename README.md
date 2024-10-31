@@ -1,5 +1,13 @@
 # MILESTONE 1: Be A Typescript Technocrat
 
+### How to run the TypeScript File
+```bash
+    npm install ts-node-dev typescript
+```
+- To Run the TypeScript File by this command 
+```bash
+ts-node-dev --respawn --transpile-only filename.ts
+```
 ## Module-1.Basic Types of TypeScript
 
 ### টাইপস্ক্রিপ্ট কী ?
