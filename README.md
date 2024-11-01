@@ -1,10 +1,12 @@
 # MILESTONE 1: Be A Typescript Technocrat
 
 ### How to run the TypeScript File
+To run the TypeScript files in this project, follow these steps:
+
 ```bash
     npm install ts-node-dev typescript
 ```
-- To Run the TypeScript File by this command 
+- Use the following command to run a TypeScript file:
 ```bash
 ts-node-dev --respawn --transpile-only filename.ts
 ```
