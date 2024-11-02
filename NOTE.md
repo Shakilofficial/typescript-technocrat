@@ -1,4 +1,4 @@
-![Alt Text](https://andrebtoe.com/wp-content/uploads/2016/05/positronx-banner-1152-1.jpg)
+
 
 ### টাইপস্ক্রিপ্ট কী ?
 
