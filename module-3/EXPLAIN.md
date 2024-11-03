@@ -159,3 +159,39 @@ class BankAccount {
 ```
 
 এখানে `BankAccount` ক্লাসে তিনটি প্রোপার্টি রয়েছে: `id`, `name`, এবং `_balance`। `public` এবং `readonly` চিহ্নিত করা প্রোপার্টিগুলি বাইরে থেকে অ্যাক্সেসযোগ্য।
+
+---
+
+### Module-3.6: গেটার এবং সেটার ইন অবজেক্ট-ওরিয়েন্টেড প্রোগ্রামিং:
+
+গেটার এবং সেটার হল TypeScript-এ বিশেষ ধরনের মেথড যা প্রোপার্টি অ্যাক্সেস এবং পরিবর্তনের জন্য কাস্টম আচরণ নির্ধারণ করতে ব্যবহৃত হয়। এগুলি ক্লাসে গেটার এবং সেটার প্রয়োগ করতে ব্যবহৃত হয়, যা অবজেক্ট-ওরিয়েন্টেড প্রোগ্রামিংয়ের একটি সাধারণ প্যাটার্ন।  
+ নিচে গেটার এবং সেটার ব্যবহারের একটি উদাহরণ দেওয়া হলো:
+
+```typescript
+class BankAccount {
+  public readonly id: number;
+  public name: string;
+  protected _balance: number;
+  constructor(id: number, name: string, balance: number) {
+    this.id = id;
+    this.name = name;
+    this._balance = balance;
+  }
+  set Deposit(amount: number) {
+    this._balance += amount;
+  }
+  get Balance() {
+    return this._balance;
+  }
+}
+const account = new BankAccount(1234, "John Doe", 1000);
+account.Deposit = 500;
+console.log(account.Balance); // 1500
+```
+
+এই উদাহরণে, `BankAccount` ক্লাসের তিনটি প্রোপার্টি রয়েছে: `id`, `name`, এবং `_balance`। `id` প্রোপার্টিটি `public` এবং `readonly` হিসেবে চিহ্নিত, `name` প্রোপার্টিটি `public` এবং `_balance` প্রোপার্টিটি `protected` হিসেবে চিহ্নিত।  
+ `Deposit` প্রোপার্টিটি `protected` এবং `Balance` প্রোপার্টিটি `public` হিসেবে চিহ্নিত। এর মানে হল `Deposit` প্রোপার্টিটি কেবল ক্লাসের ভেতর থেকে সেট করা যাবে, এবং `Balance` প্রোপার্টিটি যেকোনো জায়গা থেকে অ্যাক্সেস করা যাবে।  
+ `account` অবজেক্টটি `BankAccount` ক্লাস ব্যবহার করে তৈরি করা হয়েছে, যেখানে `id` 1234, `name` "John Doe" এবং প্রাথমিক ব্যালেন্স 1000 রয়েছে। `Deposit` প্রোপার্টিটি `Deposit` সেটার মেথড ব্যবহার করে 500 সেট করা হয়েছে। `Balance` প্রোপার্টিটি `Balance` গেটার মেথড ব্যবহার করে অ্যাক্সেস করা হয়েছে, যা `_balance` প্রোপার্টির মান রিটার্ন করে।  
+ `Deposit` প্রোপার্টিটি `Deposit` সেটার মেথড ব্যবহার করে 500 সেট করা হয়েছে, যা `_balance` প্রোপার্টিতে 500 যোগ করে। `Balance` প্রোপার্টিটি `Balance` গেটার মেথড ব্যবহার করে অ্যাক্সেস করা হয়েছে, যা `_balance` প্রোপার্টির আপডেট করা মান রিটার্ন করে।
+
+---
