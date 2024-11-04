@@ -195,3 +195,132 @@ console.log(account.Balance); // 1500
  `Deposit` প্রোপার্টিটি `Deposit` সেটার মেথড ব্যবহার করে 500 সেট করা হয়েছে, যা `_balance` প্রোপার্টিতে 500 যোগ করে। `Balance` প্রোপার্টিটি `Balance` গেটার মেথড ব্যবহার করে অ্যাক্সেস করা হয়েছে, যা `_balance` প্রোপার্টির আপডেট করা মান রিটার্ন করে।
 
 ---
+
+Here’s an explanation for each of the requested topics, structured similarly to the Module-3.6 example:
+
+---
+
+### Module-3.7: স্ট্যাটিক প্রোপার্টি এবং মেথড ইন অবজেক্ট-ওরিয়েন্টেড প্রোগ্রামিং
+
+স্ট্যাটিক প্রোপার্টি এবং মেথড ব্যবহার করে একটি ক্লাসের অন্তর্গত প্রোপার্টি বা মেথড সংজ্ঞায়িত করা যায় যা ক্লাসের নির্দিষ্ট কোন ইনস্ট্যান্সের সাথে সম্পর্কিত নয়। অর্থাৎ, এগুলি ক্লাসের সমস্ত ইনস্ট্যান্সের জন্য একটি শেয়ার্ড স্টেট হিসেবে কাজ করে। TypeScript-এ `static` কিওয়ার্ড ব্যবহার করে স্ট্যাটিক প্রোপার্টি এবং মেথড নির্ধারণ করা হয়। নিচে একটি উদাহরণ দেওয়া হলো:
+
+```typescript
+class Counter {
+  static count: number = 0;
+  static increment() {
+    return (Counter.count = Counter.count + 1);
+  }
+  static decrement() {
+    return (Counter.count = Counter.count - 1);
+  }
+}
+console.log(Counter.increment());
+console.log(Counter.increment());
+console.log(Counter.decrement());
+```
+
+এই উদাহরণে, `Counter` ক্লাসে একটি স্ট্যাটিক প্রোপার্টি `count` এবং দুটি স্ট্যাটিক মেথড `increment` এবং `decrement` রয়েছে। `count` প্রোপার্টিটি 0 দিয়ে শুরু করা হয়েছে। `increment` মেথডটি `count` প্রোপার্টিকে 1 বাড়ায় এবং `decrement` মেথডটি `count` প্রোপার্টিকে 1 কমায়। `increment` মেথডটি দুইবার এবং `decrement` মেথডটি একবার কল করা হয়েছে। আউটপুট হবে `1`, `2`, এবং `1`।
+
+স্ট্যাটিক এবং ইনস্ট্যান্স মেথডের মধ্যে পার্থক্য:
+
+- 1.স্ট্যাটিক মেথড ক্লাসের উপর কল করা হয়, ইনস্ট্যান্স মেথড ক্লাসের নির্দিষ্ট একটি ইনস্ট্যান্সের উপর কল করা হয়।**
+- 2.স্ট্যাটিক মেথড কেবলমাত্র স্ট্যাটিক প্রোপার্টি ও মেথড অ্যাক্সেস করতে পারে, ইনস্ট্যান্স মেথড কেবল ইনস্ট্যান্স প্রোপার্টি ও মেথড অ্যাক্সেস করতে পারে।
+- 3.স্ট্যাটিক মেথড সাধারণত এমন কাজ করে যা ইনস্ট্যান্সের স্টেটের উপর নির্ভর করে না, যেমন: গণনা বা ইউটিলিটি ফাংশন। ইনস্ট্যান্স মেথড নির্দিষ্ট ইনস্ট্যান্সের স্টেট অনুযায়ী কাজ করে।
+
+---
+
+### Module-3.8: পলিমরফিজম ইন অবজেক্ট-ওরিয়েন্টেড প্রোগ্রামিং
+
+পলিমরফিজম এমন একটি বৈশিষ্ট্য যা একটি অবজেক্টকে বিভিন্ন রূপে কাজ করতে সক্ষম করে। অবজেক্ট-ওরিয়েন্টেড প্রোগ্রামিংয়ে, পলিমরফিজম ইনহেরিটেন্স এবং মেথড ওভাররাইডিং দ্বারা অর্জিত হয়। নিচের উদাহরণে এটি দেখানো হয়েছে:
+
+```typescript
+class Person {
+  getSleep() {
+    console.log(`The person is sleeping for 8 hours.`);
+  }
+}
+class Student extends Person {
+  getSleep() {
+    console.log(`The student is sleeping for 7 hours.`);
+  }
+}
+class Developer extends Person {
+  getSleep() {
+    console.log(`The developer is sleeping for 6 hours.`);
+  }
+}
+const getSleepingHours = (person: Person) => {
+  person.getSleep();
+};
+const person = new Person();
+const student = new Student();
+const developer = new Developer();
+getSleepingHours(person);
+getSleepingHours(student);
+getSleepingHours(developer);
+```
+
+এই উদাহরণে, `Person` ক্লাসের একটি `getSleep` মেথড রয়েছে। `Student` এবং `Developer` ক্লাসগুলি `Person` থেকে ইনহেরিট করেছে এবং `getSleep` মেথডকে ওভাররাইড করেছে। `getSleepingHours` ফাংশনটি প্যারামিটার হিসেবে একটি `Person` অবজেক্ট গ্রহণ করে এবং সেটির `getSleep` মেথড কল করে, যা ভিন্ন ভিন্ন ক্লাস অনুযায়ী আলাদা আউটপুট দেয়।
+
+---
+
+### Module-3.9: অ্যাবস্ট্রাকশন ইন অবজেক্ট-ওরিয়েন্টেড প্রোগ্রামিং
+
+অ্যাবস্ট্রাকশন হলো সিস্টেমের জটিলতাকে লুকিয়ে, শুধু প্রয়োজনীয় বৈশিষ্ট্যগুলিতে মনোযোগ কেন্দ্রীভূত করার প্রক্রিয়া। নিচে একটি উদাহরণ দেওয়া হলো:
+
+```typescript
+interface Vehicle {
+  startEngine(): void;
+  stopEngine(): void;
+  move(): void;
+}
+class Car implements Vehicle {
+  startEngine(): void {
+    console.log("Car engine started");
+  }
+  stopEngine(): void {
+    console.log("Car engine stopped");
+  }
+  move(): void {
+    console.log("Car moving");
+  }
+}
+const tesla = new Car();
+tesla.startEngine();
+tesla.stopEngine();
+tesla.move();
+```
+
+এখানে, `Vehicle` ইন্টারফেসটি একটি গাড়ির মৌলিক কার্যকারিতা সংজ্ঞায়িত করেছে। `Car` ক্লাসটি `Vehicle` ইন্টারফেসটি ইমপ্লিমেন্ট করেছে এবং প্রত্যেকটি মেথডের জন্য একটি বাস্তবায়ন প্রদান করেছে। এই অ্যাবস্ট্রাকশন কনসেপ্টটি কোডকে আরও মডুলার এবং রক্ষণাবেক্ষণযোগ্য করে তোলে।
+
+---
+
+### Module-3.10: এনক্যাপসুলেশন ইন অবজেক্ট-ওরিয়েন্টেড প্রোগ্রামিং
+
+এনক্যাপসুলেশন একটি সিস্টেমের জটিলতাকে ছোট ছোট অংশে ভাগ করে লুকিয়ে রাখার প্রক্রিয়া। নিচের উদাহরণটি দেখুন:
+
+```typescript
+class BankAccount {
+  public readonly id: number;
+  public name: string;
+  protected _balance: number;
+  constructor(id: number, name: string, balance: number) {
+    this.id = id;
+    this.name = name;
+    this._balance = balance;
+  }
+  addDeposit(amount: number) {
+    this._balance += amount;
+  }
+  getBalance() {
+    return this._balance;
+  }
+}
+const account = new BankAccount(1234, "John Doe", 1000);
+console.log(account.getBalance()); // 1000
+account.addDeposit(500);
+console.log(account.getBalance()); // 1500
+```
+
+এই উদাহরণে, `BankAccount` ক্লাসে `_balance` প্রোপার্টিটি `protected` হিসেবে চিহ্নিত করা হয়েছে, যা এই প্রোপার্টিকে শুধু ক্লাসের মধ্যে ব্যবহৃত হতে দেয়। `addDeposit` মেথডটি `_balance` প্রোপার্টিতে নির্দিষ্ট পরিমাণ যোগ করে এবং `getBalance` মেথডটি `_balance` এর মান ফেরত দেয়। এনক্যাপসুলেশন ব্যবহারে সিস্টেমকে সহজে পরিচালনা ও রক্ষণাবেক্ষণ করা সম্ভব।
+----

@@ -272,8 +272,169 @@ In this example, the `BankAccount` class has three properties: `id`, `name`, and
 
 ### Module-3.7:Statics in Object-Oriented Programming:
 
+Statics are a way to define properties and methods that belong to a class rather than an instance of the class. They are useful when you want to share data and methods across multiple instances of a class. In TypeScript, you can define static properties and methods using the `static` keyword. Here's an example:
+
+```typescript
+class Counter {
+  static count: number = 0;
+  static increment() {
+    return (Counter.count = Counter.count + 1);
+  }
+  static decrement() {
+    return (Counter.count = Counter.count - 1);
+  }
+}
+console.log(Counter.increment());
+console.log(Counter.increment());
+console.log(Counter.decrement());
+```
+
+In this example, the `Counter` class has a static property `count` and two static methods `increment` and `decrement`. The `count` property is initialized to 0. The `increment` method increments the `count` property by 1. The `decrement` method decrements the `count` property by 1. The `increment` method is called twice, and the `decrement` method is called once. The output is `1`, `2`, and `1`.
+
+Explain the difference between static and instance methods:
+
+- 1.Static methods are called on the class itself, while instance methods are called on an instance of the class.
+- 2.Static methods can access static properties and methods, while instance methods can only access instance properties and methods.
+- 3.Static methods are often used to perform calculations or provide utility functions that don't depend on the state of an instance. Instance methods are often used to provide behavior that depends on the state of an instance.
+- 4.Static methods are often used to define constants or provide utility functions that don't depend on the state of an instance.
+
+---
+
 ### Module-3.8:Polymorphism in Object-Oriented Programming:
 
+Polymorphism is the ability of an object to take on many forms. In object-oriented programming, polymorphism is achieved through inheritance and method overriding. Inheritance allows a derived class to inherit the properties and methods of a base class, while method overriding allows a derived class to provide its own implementation of a method inherited from the base class. This allows for code reuse and flexibility in object-oriented programming. Polymorphism is a powerful concept that enables code to be written in a more generic and reusable way, making it easier to maintain and extend. It is an important concept in object-oriented programming and is used extensively in various programming languages and frameworks. Understanding polymorphism is crucial for object-oriented programming, as it allows for code to be written in a more flexible and modular way. By understanding polymorphism, you can write more efficient and maintainable code, and leverage the power of object-oriented programming to solve complex problems. Here's an example:
+
+```typescript
+// Polymorphism in Object-Oriented Programming
+
+class Person {
+  getSleep() {
+    console.log(`The person is sleeping for 8 hours.`);
+  }
+}
+class Student extends Person {
+  getSleep() {
+    console.log(`The student is sleeping for 7 hours.`);
+  }
+}
+class Developer extends Person {
+  getSleep() {
+    console.log(`The developer is sleeping for 6 hours.`);
+  }
+}
+const getSleepingHours = (person: Person) => {
+  person.getSleep();
+};
+const person = new Person();
+const student = new Student();
+const developer = new Developer();
+getSleepingHours(person);
+getSleepingHours(student);
+getSleepingHours(developer);
+//another example
+class Shape {
+  getArea(): number {
+    return 0;
+  }
+}
+class Circle extends Shape {
+  radius: number;
+  constructor(radius: number) {
+    super();
+    this.radius = radius;
+  }
+  getArea(): number {
+    return Math.PI * this.radius * this.radius;
+  }
+}
+class Rectangle extends Shape {
+  width: number;
+  height: number;
+  constructor(width: number, height: number) {
+    super();
+    this.width = width;
+    this.height = height;
+  }
+  getArea(): number {
+    return this.width * this.height;
+  }
+}
+function getArea(shape: Shape) {
+  return shape.getArea();
+}
+const circle = new Circle(5);
+const rectangle = new Rectangle(4, 5);
+console.log(getArea(circle));
+console.log(getArea(rectangle));
+```
+
+In this example, we have a `Person` class with a `getSleep` method that prints a message indicating the person is sleeping. We then define two subclasses of `Person` called `Student` and `Developer`, which override the `getSleep` method to print different messages. We also define a `getSleepingHours` function that takes a `Person` as a parameter and calls the `getSleep` method on that parameter. We then call the `getSleepingHours` function with an instance of each subclass of `Person`.  
+Another example is provided, where a `Shape` class is defined with a `getArea` method that returns 0. Two subclasses of `Shape` are defined: `Circle` and `Rectangle`. Each subclass overrides the `getArea` method to calculate the area of a circle or rectangle, respectively. We then define a `getArea` function that takes a `Shape` as a parameter and calls the `getArea` method on that parameter. We then call the `getArea` function with an instance of each subclass of `Shape`.
+
+----
+
 ### Module-3.9:Abstraction in Object-Oriented Programming:
+Abstraction is the process of hiding the complexity of a system by breaking it down into smaller, more manageable parts. Abstraction allows us to focus on the essential features of a system and ignore the irrelevant details. In the example above, we have an interface Vehicle that defines the basic functionality of a vehicle. The interface defines three methods: startEngine, stopEngine, and move.
+also we have a class Car that implements the Vehicle interface. The Car class provides an implementation for each of the methods defined in the Vehicle interface. The Car class also has a test method that is not part of the Vehicle interface. This method is not part of the interface because it is not essential for the functionality of the Car class. By defining the test method outside of the Vehicle interface, we can ensure that it is not accidentally used by other classes that implement the Vehicle interface.
+Here's an example of how to use abstraction:
+```typescript
+interface Vehicle {
+  startEngine(): void;
+  stopEngine(): void;
+  move(): void;
+}
+class Car implements Vehicle {
+  startEngine(): void {
+    console.log("Car engine started");
+  }
+  stopEngine(): void {
+    console.log("Car engine stopped");
+  }
+  move(): void {
+    console.log("Car moving");
+  }
+  test(): void {
+    console.log("Car test");
+  }
+}
+const tesla = new Car();
+tesla.startEngine();
+tesla.stopEngine();
+tesla.move();
+tesla.test();
+```
+In this example, we have an interface Vehicle that defines the basic functionality of a vehicle. The interface defines three methods: startEngine, stopEngine, and move. We then create a class Car that implements the Vehicle interface. The Car class provides an implementation for each of the methods defined in the Vehicle interface. The Car class also has a test method that is not part of the Vehicle interface. This method is not part of the interface because it is not essential for the functionality of the Car class. By defining the test method outside of the Vehicle interface, we can ensure that it is not accidentally used by other classes that implement the Vehicle interface.
+By using abstraction, we can create a more modular and maintainable codebase. We can break down complex systems into smaller, more manageable parts, and define clear boundaries between these parts. This allows us to focus on the essential features of a system and ignore the irrelevant details.
+
+----
 
 ### Module-3.10:Encapsulation in Object-Oriented Programming:
+
+Encapsulation is the process of hiding the complexity of a system by breaking it down into smaller, more manageable parts. Encapsulation allows us to focus on the essential features of a system and ignore the irrelevant details. In the example above, we have an interface Vehicle that defines the basic functionality of a vehicle. The interface defines three methods: startEngine, stopEngine, and move. We then create a class Car that implements the Vehicle interface. The Car class provides an implementation for each of the methods defined in the Vehicle interface. The Car class also has a test method that is not part of the Vehicle interface. This method is not part of the interface because it is not essential for the functionality of the Car class. By defining the test method outside of the Vehicle interface, we can ensure that it is not accidentally used by other classes that implement the Vehicle interface.
+Here's an example of how to use encapsulation:
+```typescript
+class BankAccount {
+  public readonly id: number;
+  public name: string;
+  protected _balance: number;
+  constructor(id: number, name: string, balance: number) {
+    this.id = id;
+    this.name = name;
+    this._balance = balance;
+  }
+  addDeposit(amount: number) {
+    this._balance += amount;
+  }
+  getBalance() {
+    return this._balance;
+  }
+}
+const account = new BankAccount(1234, "John Doe", 1000);
+console.log(account.getBalance()); // 1000
+account.addDeposit(500);
+console.log(account.getBalance()); // 1500
+```
+In this example, we have a class BankAccount that has three properties: id, name, and _balance. The id property is marked as public and readonly, the name property is marked as public, and the _balance property is marked as protected. The addDeposit method is marked as protected, and the getBalance method is marked as public. This means that the addDeposit method can only be called from within the class, and the getBalance method can be called from anywhere. We then create an instance of the BankAccount class with an id of 1234, a name of "John Doe", and an initial balance of 1000. The getBalance method is called on the account object, which returns the value of the _balance property. The addDeposit method is called on the account object, which adds 500 to the _balance property. The getBalance method is called on the account object again, which returns the updated value of the _balance property.
+By using encapsulation, we can hide the complexity of a system by breaking it down into smaller, more manageable parts. We can focus on the essential features of a system and ignore the irrelevant details. This allows us to create a more modular and maintainable codebase.
+
+----
